@@ -7,6 +7,7 @@ require('./model/userModel');
 
 // invoking the express Server
 const app = express();
+app.use(express.json());
 
 // destructure enviornmental variables
 const {PORT,DB} = require("./config/keys");
@@ -25,3 +26,8 @@ mongoose.connection.on("connected",()=>{console.log("connected to mongodb")});
 
 mongoose.connection.on("error",(err)=>{console.log("error connecting ",err)});
 
+// router useability
+app.use(require('./route/userRoute'))
+
+
+module.exports = app

@@ -1,0 +1,25 @@
+{
+  "name": "instaclonemernstack",
+  "version": "1.0.0",
+  "description": "instagram",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arman-Arzoo/InstaCloneMernStack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arman-Arzoo/InstaCloneMernStack/issues"
+  },
+  "homepage": "https://github.com/Arman-Arzoo/InstaCloneMernStack#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}

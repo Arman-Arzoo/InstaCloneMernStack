@@ -1,4 +1,5 @@
-require('../model/userModel')
+const mongoose = require('mongoose');
+const user = mongoose.model('user');
 
 exports.home = (req,res)=>{
     res.send("hello for home")

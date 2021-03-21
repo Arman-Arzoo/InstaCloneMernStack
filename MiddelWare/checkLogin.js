@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const {APP_SECRET} = require("../config/keys");
 const mongoose = require('mongoose');
-const User = mongoose.model('user');
+const User = mongoose.model('User');
 
 
 module.exports = async(req,res,next)=>{

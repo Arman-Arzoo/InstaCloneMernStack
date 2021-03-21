@@ -28,9 +28,10 @@ mongoose.connection.on("error",(err)=>{console.log("error connecting ",err)});
 
 // model accessibility
 require('./model/userModel');
-
+require('./model/userPost');
 // router useability
-app.use(require('./route/userRoute'))
+app.use(require('./route/userRoute'));
+app.use(require('./route/postRoute'));
 
 
 module.exports = app

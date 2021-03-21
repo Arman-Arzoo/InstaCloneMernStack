@@ -24,3 +24,15 @@ exports.createPost = async (req,res)=>{
         return res.status(400).json({msg:"could post"})
     }
 }
+
+exports.getPosts = async (req , res ) => {
+
+   try {
+    const posts = await Post.find().populate('postedBy', '_id name')
+    res.json({posts})
+       
+   } catch (error) {
+       return res.status(400).json({msg:'Fail loading post'})
+   }
+
+}

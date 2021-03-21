@@ -36,3 +36,15 @@ exports.getPosts = async (req , res ) => {
    }
 
 }
+
+exports.myPost = async (req , res ) => {
+
+    try {
+        const mypost = await Post.find({postedBy:req.user._id}).populate("postedBy",'_id name');
+        res.status(200).json({mypost})
+        
+    } catch (error) {
+        return res.status(400).json({msg:'Sorry could not get post'})
+    }
+
+}

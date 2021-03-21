@@ -3,7 +3,7 @@ const express = require('express');
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
-require('./model/userModel');
+
 
 // invoking the express Server
 const app = express();
@@ -25,6 +25,9 @@ mongoose.connect(DB,{
 mongoose.connection.on("connected",()=>{console.log("connected to mongodb")});
 
 mongoose.connection.on("error",(err)=>{console.log("error connecting ",err)});
+
+// model accessibility
+require('./model/userModel');
 
 // router useability
 app.use(require('./route/userRoute'))

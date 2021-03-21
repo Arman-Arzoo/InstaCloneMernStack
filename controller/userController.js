@@ -77,4 +77,6 @@ exports.signIn = async(req,res)=>{
 }
 
 
-
+exports.protected = (req,res)=>{
+    res.status(200).json({msg:"welcome user ggg"})
+}

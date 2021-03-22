@@ -1,22 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
     <>
       <nav>
         <div className="nav-wrapper white ">
-          <a href="#" className="brand-logo left">
+          <Link to="/" className="brand-logo left">
             Instagarm
-          </a>
+          </Link>
           <ul id="nav-mobile" className="right">
             <li>
-              <a href="sass.html">Login</a>
+              <Link to="/login">Login</Link>
             </li>
             <li>
-              <a href="badges.html">Sign up</a>
+              <Link to="/signup">Sign up</Link>
             </li>
             <li>
-              <a href="collapsible.html">Profile</a>
+              <Link to="/profile">Profile</Link>
             </li>
           </ul>
         </div>

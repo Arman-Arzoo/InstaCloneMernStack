@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+
 .nav-wrapper a{
     color: black;
-
 }
 .nav-wrapper{
     padding-left: 25px;
+}
+.brand-logo{
+    font-family: 'Grand Hotel', cursive;
 }
 

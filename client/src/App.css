@@ -10,3 +10,45 @@
     font-family: 'Grand Hotel', cursive;
 }
 
+
+/* profile page related css started */
+.Profile {
+    display: flex;
+    /* justify-content: space-around; */
+    margin: 18px 0px;
+    border-bottom: 1px solid gray;
+}
+.profile_info{
+    margin-left: 120px;
+}
+.profilePic{
+    margin-left: 50px;
+}
+.profilePic img{
+    width: 160px;
+    height: 160px;
+    border-radius: 80%;
+}
+.items{
+    display: flex;
+    justify-content: space-between;
+    width: 108%;
+   
+}
+
+.gallary{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.gallary-item{
+    width: 30%;
+    margin-top: 15px;
+    padding: 2px;
+}
+.profile-container{
+    max-width: 950px;
+    margin:0px auto;
+}
+
+/* profile page related css Ended */

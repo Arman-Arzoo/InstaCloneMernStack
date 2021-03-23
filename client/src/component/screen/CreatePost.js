@@ -10,6 +10,7 @@ export default function CreatePost() {
             textAlign:"center"
         }}
         >
+            <h4>Create Post</h4>
             <input 
             type="text"
              placeholder="title"

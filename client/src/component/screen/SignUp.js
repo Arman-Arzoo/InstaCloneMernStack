@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Input } from '@material-ui/core';
-import axios from 'axios'
+import M from 'materialize-css'
 
 
 
@@ -87,14 +87,16 @@ export default function SignUp() {
   
     const data = await res.json();
     if(data.msg){
-      console.log("error occured",data.msg)
+      M.toast({html: data.msg, classes: 'rounded #ef5350 red lighten-1'})
     }
     else{
-      console.log("success",data)
+      // console.log("success",data)
+      history.push("/login")
     }
 
    } catch (error) {
      console.log(error)
+     M.toast({html: error, classes: 'rounded #ef5350 red lighten-1'})
    }
   }
 

@@ -15,13 +15,20 @@ exports.signUp = async(req,res)=>{
     if(!name || !email || !password){
         return res.status(422).json({msg:"please fill out the field"})
     }
-
+    
     const ExistUser = await User.findOne({email});
 
     if(ExistUser){
         return res.status(422).json({msg:"User already exist"})
     }
 
+
+    if (password.length < 5) {
+        return res
+          .status(400)
+          .json({ msg: "password should be 5 character or more" });
+      }
+      
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password,salt)
 

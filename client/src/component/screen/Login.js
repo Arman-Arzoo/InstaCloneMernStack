@@ -12,6 +12,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useState } from 'react';
+import { Input } from '@material-ui/core';
+import M from 'materialize-css'
+import {useHistory} from 'react-router-dom';
+
 
 function Copyright() {
   return (
@@ -47,7 +52,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
+
   const classes = useStyles();
+  const [email ,setEmail] = useState()
+  const [password ,setPassword] = useState()
+  const history = useHistory();
+
+
+  const LoginData = async (e)=>{
+    e.preventDefault();
+    try {
+      // const loginUser = {email, password};
+
+      const loginRes = await fetch("/signin",{
+        method:"post",
+        headers:{"content-type":"application/json"},
+        body:JSON.stringify({
+          email,
+          password
+        })
+      });
+    
+      const UserData = await loginRes.json();
+      if(UserData.msg){
+        M.toast({html:UserData.msg , classes:"#e57373 red lighten-2"})
+      }
+      else{
+         history.push("/profile")
+      }
+
+      
+    } catch (error) {
+      
+    }
+
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,7 +98,7 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={LoginData} >
           <TextField
             variant="outlined"
             margin="normal"
@@ -70,6 +109,8 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+            value={email}
+            onChange={(e)=>{setEmail(e.target.value)}}
           />
           <TextField
             variant="outlined"
@@ -81,12 +122,14 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={(e)=>{setPassword(e.target.value)}}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
+          <Input
             type="submit"
             fullWidth
             variant="contained"
@@ -94,7 +137,7 @@ export default function Login() {
             className={classes.submit}
           >
             Sign In
-          </Button>
+          </Input>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">

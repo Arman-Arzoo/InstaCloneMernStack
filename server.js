@@ -2,12 +2,14 @@
 const express = require('express');
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cor = require("cors")
 
 
 
 // invoking the express Server
 const app = express();
 app.use(express.json());
+app.use(cor());
 
 // destructure enviornmental variables
 const {PORT,DB} = require("./config/keys");

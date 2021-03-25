@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import {useHistory} from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -12,6 +12,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Input } from '@material-ui/core';
+import axios from 'axios'
+
+
 
 function Copyright() {
   return (
@@ -43,7 +47,11 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor:'#3f51b5',
+    borderRadius:'5px',
+    color:'white'
   },
+  
 }));
 
 
@@ -51,10 +59,44 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   // Fetch data for back end
-  const {name ,setName} = useState("")
-  const {password ,setPassword} = useState("")
-  const {email , setEmail} = useState("")
+  const [name ,setName] = useState("")
+  const [password ,setPassword] = useState("")
+  const [email , setEmail] = useState("")
+  const history = useHistory();
 
+  const  SignData =  async(e)=>{
+      e.preventDefault();
+   try {
+     
+    const res = await fetch("/signup",{
+      method:"post",
+      headers:{"content-type":"application/json"},
+      body:JSON.stringify({
+        name,
+        password,
+        email,
+      })
+    });
+
+  //   const newUser ={
+  //    name,
+  //    email,
+  //    password 
+  //   }
+  //  const res= await axios.post("/signup",newUser)
+  
+    const data = await res.json();
+    if(data.msg){
+      console.log("error occured",data.msg)
+    }
+    else{
+      console.log("success",data)
+    }
+
+   } catch (error) {
+     console.log(error)
+   }
+  }
 
   const classes = useStyles();
 
@@ -68,7 +110,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={SignData}>
           <Grid container spacing={2}>
             <Grid item xs={12} >
               <TextField
@@ -105,7 +147,7 @@ export default function SignUp() {
                 name="email"
                 autoComplete="email"
                 value={email}
-                onChange={(e)=>{setName(e.target.email)}}
+                onChange={(e)=>{setEmail(e.target.value)}}
               />
             </Grid>
             <Grid item xs={12}>
@@ -129,16 +171,20 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
-          <Button
+          <Input 
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            // onClick={()=>{
+            //   SignData()
+            //     console.log("clicked")
+            //   }}
             
           >
             Sign Up
-          </Button>
+          </Input>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="#" variant="body2">

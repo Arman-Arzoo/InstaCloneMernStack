@@ -16,6 +16,9 @@ exports.signUp = async(req,res)=>{
         return res.status(422).json({msg:"please fill out the field"})
     }
     
+    if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
+        return res.status(422).json({msg:"Invalid Email "})
+    }
     const ExistUser = await User.findOne({email});
 
     if(ExistUser){
@@ -68,8 +71,9 @@ exports.signIn = async(req,res)=>{
 
     if(isMatch){
         const token = jwt.sign({id:savedUser._id},APP_SECRET);
-        console.log(token)
-        res.json({token})
+        // console.log(token)
+        const {_id,name,email} = savedUser
+        res.json({token, user:{_id,name,email}});
         // res.status(200).json({msg:"welcome"})
     }
     else{

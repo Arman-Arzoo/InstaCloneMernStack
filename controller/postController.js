@@ -5,14 +5,15 @@ exports.createPost = async (req,res)=>{
     
     try {
         
-        const {tittle,body}= req.body;
-        if(!tittle || !body){
+        const {tittle,body,pic}= req.body;
+        if(!tittle || !body ||!pic){
             return res.status(422).json({msg:"please enter the field"})
         }
         
         const post = new Post({
             tittle,
             body,
+            photo:pic,
             postedBy:req.user
 
         })

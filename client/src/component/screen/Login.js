@@ -1,6 +1,5 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -79,6 +78,8 @@ export default function Login() {
         M.toast({html:UserData.msg , classes:"#e57373 red lighten-2"})
       }
       else{
+        localStorage.setItem("jwt",UserData.token);
+        localStorage.setItem("user",JSON.stringify(UserData.user))
         M.toast({html:"Saved Successfuly" , classes:"#66bb6a green lighten-1"})
         console.log(UserData)
          history.push("/profile")

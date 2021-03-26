@@ -49,3 +49,33 @@ exports.myPost = async (req , res ) => {
     }
 
 }
+
+exports.myLike =  (req , res ) => {
+    Post.findByIdAndUpdate(req.user.postid,{
+        $push:{like:req.user._id}
+    },{
+        new:true
+    }).exec(err,result)
+
+    if(err){
+        return res.status(422).json({msg:err})
+    }
+    else{
+        res.json();
+    }
+}
+
+exports.myLike =  (req , res ) => {
+    Post.findByIdAndUpdate(req.user.postid,{
+        $pull:{like:req.user._id}
+    },{
+        new:true
+    }).exec(err,result)
+
+    if(err){
+        return res.status(422).json({msg:err})
+    }
+    else{
+        res.json();
+    }
+}

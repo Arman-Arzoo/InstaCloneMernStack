@@ -44,10 +44,15 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+/* .gallary img{
+    max-height: 50%;
+} */
 .gallary-item{
     width: 30%;
     margin-top: 15px;
     padding: 2px;
+    /* max-height: 10%; */
 }
 .profile-container{
     max-width: 950px;

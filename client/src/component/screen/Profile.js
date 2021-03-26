@@ -1,6 +1,29 @@
-import React from 'react'
+import React,{useContext, useState ,useEffect} from 'react'
+import {UserContext} from '../../App'
 
 export default function Profile() {
+
+    const [myPost, setMyPost]=useState([]);
+    const {state,dispatch}=useContext(UserContext);
+
+    useEffect(() => {
+      async function getMyPost(){
+         const res = await fetch('/mypost',{
+             headers:{
+                 "auth":"Bearer "+localStorage.getItem("jwt")
+             }
+         });
+
+         const myPosts = await res.json()
+        //  console.log(myPost.mypost)
+        setMyPost(myPosts.mypost)
+       } 
+       getMyPost()
+       
+    }, []);
+
+    console.log("my post is ",myPost)
+    console.log("state",state)
     return (
         <div className="profile-container">
         <div className="Profile">
@@ -9,7 +32,7 @@ export default function Profile() {
                 <img src="https://cdn.pixabay.com/photo/2017/11/06/13/45/cap-2923682_960_720.jpg" alt="profile"></img>
             </div>
             <div className="profile_info">
-                <h4>Asad</h4>
+                <h4>{state? state.name:"loading"}</h4>
                 <div  className="items">
                     <h6>20 post</h6>
                     <h6>20 Follower</h6>
@@ -21,12 +44,14 @@ export default function Profile() {
             </div>
         </div>
         <div className="gallary">
-            <img  className="gallary-item" src="https://cdn.pixabay.com/photo/2016/01/08/11/57/butterflies-1127666__340.jpg" alt="pic"></img>
-            <img  className="gallary-item" src="https://cdn.pixabay.com/photo/2016/01/08/11/57/butterflies-1127666__340.jpg" alt="pic"></img>
-            <img  className="gallary-item" src="https://cdn.pixabay.com/photo/2016/01/08/11/57/butterflies-1127666__340.jpg" alt="pic"></img>
-            <img  className="gallary-item" src="https://cdn.pixabay.com/photo/2016/01/08/11/57/butterflies-1127666__340.jpg" alt="pic"></img>
-            <img  className="gallary-item" src="https://cdn.pixabay.com/photo/2016/01/08/11/57/butterflies-1127666__340.jpg" alt="pic"></img>
-            <img  className="gallary-item" src="https://cdn.pixabay.com/photo/2016/01/08/11/57/butterflies-1127666__340.jpg" alt="pic"></img>
+            {
+               myPost.map(pics =>{
+                return(
+                    <img  className="gallary-item" src={pics.photo} alt={pics.tittle}></img>
+                )
+              
+               }) 
+            }
 
         </div>
         </div>

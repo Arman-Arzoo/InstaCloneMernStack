@@ -1,9 +1,9 @@
-import React,{useContext, useState ,useEffect} from 'react'
-import {UserContext} from '../../App'
+import React,{useContext, useState ,useEffect} from 'react';
+import {UserContext} from '../../App';
 
 export default function Profile() {
 
-    const [myPost, setMyPost]=useState([]);
+    const [myPost, setMyPost] = useState([]);
     const {state,dispatch}=useContext(UserContext);
 
     useEffect(() => {

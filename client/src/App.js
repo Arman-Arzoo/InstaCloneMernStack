@@ -13,12 +13,12 @@ export const UserContext = createContext();
 
 const Routing = () => {
   const history = useHistory();
-  const {state,dispatch} = useContext(UserContext)
+  let {state,dispatch} = useContext(UserContext)
   useEffect(() => {
    
     const user = JSON.parse(localStorage.getItem("user"));
     if(user){
-      // dispatch({type:"USER",payload:user})
+      dispatch({type:"USER",payload:user})
       history.push('/')
     } 
     else{
@@ -38,7 +38,7 @@ const Routing = () => {
 };
 
 function App() {
-  const {state,dispatch} = useReducer(reducer,initialState);
+  let [state,dispatch] = useReducer(reducer,initialState);
   return (
     <UserContext.Provider value={{state,dispatch}}>
     <BrowserRouter>

@@ -4,7 +4,7 @@ import {UserContext} from '../App'
 
 export default function NavBar() {
 
-  const {state,dispatch} = useContext(UserContext);
+  let {state,dispatch} = useContext(UserContext);
 
   const RenderList = ()=>{
     if(state){

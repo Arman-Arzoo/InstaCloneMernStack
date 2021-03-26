@@ -59,7 +59,7 @@ export default function Login() {
   const history = useHistory();
 
   // form context api
- const {state,dispatch}= useContext(UserContext)
+ let {state,dispatch}= useContext(UserContext)
 
 
   const LoginData = async (e)=>{
@@ -87,7 +87,7 @@ export default function Login() {
         localStorage.setItem("user",JSON.stringify(UserData.user));
         dispatch({type:"USER",payload:UserData.user});
         console.log("USER DATA",UserData.user)
-        M.toast({html:"Saved Successfuly" , classes:"#66bb6a green lighten-1"})
+        M.toast({html:"Log In Successfuly" , classes:"#66bb6a green lighten-1"})
         console.log()
         history.push("/")
         

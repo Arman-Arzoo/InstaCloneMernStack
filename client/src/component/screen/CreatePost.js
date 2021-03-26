@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
-import M from 'materialize-css'
-import {useHistory} from 'react-router-dom'
+import React, { useEffect } from 'react';
+import M from 'materialize-css';
+import {useHistory} from 'react-router-dom';
 import { useState } from 'react';
 
 export default function CreatePost() {
@@ -41,7 +41,7 @@ export default function CreatePost() {
        }
      }
      postData()
-      
+    /* eslint-disable */
     }, [image])
 
     const PostRes = async(e)=>{

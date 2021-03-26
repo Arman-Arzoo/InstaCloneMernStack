@@ -8,7 +8,6 @@ export default function Home() {
             const res = await fetch('/getposts',{
                 headers:{"auth":"Bearer "+localStorage.getItem("jwt")},
              });
-             console.log(res)
              const allPosts = await res.json();
              setPost(allPosts.posts)
           

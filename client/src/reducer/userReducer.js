@@ -6,6 +6,9 @@ export const reducer = (state,action)=>{
             {
                 return action.payload;
             }
+        case "CLEAR":{
+             return null
+        }
         default:{
             return state;
         }

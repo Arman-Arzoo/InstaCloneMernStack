@@ -59,7 +59,7 @@ export default function Login() {
   const history = useHistory();
 
   // form context api
- let {state,dispatch}= useContext(UserContext)
+ let {dispatch}= useContext(UserContext)
 
 
   const LoginData = async (e)=>{

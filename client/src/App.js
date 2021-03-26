@@ -13,7 +13,7 @@ export const UserContext = createContext();
 
 const Routing = () => {
   const history = useHistory();
-  let {state,dispatch} = useContext(UserContext)
+  let {dispatch} = useContext(UserContext)
   useEffect(() => {
    
     const user = JSON.parse(localStorage.getItem("user"));

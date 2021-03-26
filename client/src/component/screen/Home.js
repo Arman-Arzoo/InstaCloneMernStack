@@ -9,7 +9,7 @@ export default function Home() {
                     <img src ="https://cdn.pixabay.com/photo/2016/11/08/05/26/woman-1807533__340.jpg" alt="post"></img>
                 </div>
                 <div className="card-contents home-content">
-                <i class="material-icons">favorite</i>
+                <i className="material-icons">favorite</i>
                     <h6>tittle</h6>
                     <p>Wow amazing pos</p>
                     <input type="text" placeholder="add a comment"></input>
@@ -26,7 +26,7 @@ export default function Home() {
                 </div>
                 <div className="card-contents home-content">
                     
-                    <i class="material-icons">favorite</i>
+                    <i className="material-icons">favorite</i>
                     <h6>tittle</h6>
                     <p>Wow amazing pos</p>
                     <input type="text" placeholder="add a comment"></input>
@@ -42,7 +42,7 @@ export default function Home() {
                     <img src ="https://cdn.pixabay.com/photo/2016/11/08/05/26/woman-1807533__340.jpg" alt="post"></img>
                 </div>
                 <div className="card-contents home-content">
-                <i class="material-icons">favorite</i>
+                <i className="material-icons">favorite</i>
                     <h6>tittle</h6>
                     <p>Wow amazing pos</p>
                     <input type="text" placeholder="add a comment"></input>
@@ -59,7 +59,7 @@ export default function Home() {
                     <img src ="https://cdn.pixabay.com/photo/2018/09/23/18/30/drop-3698073__340.jpg" alt="post"></img>
                 </div>
                 <div className="card-contents home-content">
-                <i class="material-icons">favorite</i>
+                <i className="material-icons">favorite</i>
                     <h6>tittle</h6>
                     <p>Wow amazing pos</p>
                     <input type="text" placeholder="add a comment"></input>
@@ -76,7 +76,7 @@ export default function Home() {
                     <img src ="https://cdn.pixabay.com/photo/2016/11/08/05/26/woman-1807533__340.jpg" alt="post"></img>
                 </div>
                 <div className="card-contents home-content">
-                <i class="material-icons">favorite</i>
+                <i className="material-icons">favorite</i>
                     <h6>tittle</h6>
                     <p>Wow amazing pos</p>
                     <input type="text" placeholder="add a comment"></input>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext}from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { Input } from '@material-ui/core';
 import M from 'materialize-css'
 import {useHistory} from 'react-router-dom';
+import {UserContext} from '../../App'
 
 
 function Copyright() {
@@ -57,8 +58,12 @@ export default function Login() {
   const [password ,setPassword] = useState()
   const history = useHistory();
 
+  // form context api
+ const {state,dispatch}= useContext(UserContext)
+
 
   const LoginData = async (e)=>{
+    
     e.preventDefault();
     try {
       // const loginUser = {email, password};
@@ -79,10 +84,14 @@ export default function Login() {
       }
       else{
         localStorage.setItem("jwt",UserData.token);
-        localStorage.setItem("user",JSON.stringify(UserData.user))
+        localStorage.setItem("user",JSON.stringify(UserData.user));
+        dispatch({type:"USER",payload:UserData.user});
+        console.log("USER DATA",UserData.user)
         M.toast({html:"Saved Successfuly" , classes:"#66bb6a green lighten-1"})
-        console.log(UserData)
-         history.push("/profile")
+        console.log()
+        history.push("/")
+        
+        
       }
 
       

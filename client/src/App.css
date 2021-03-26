@@ -64,6 +64,12 @@
 .home-content{
    margin:15px;
    padding-top: 15px;
+   /* height: auto; */
+}
+
+.home-content img{
+    max-width: 100%;
+    /* max-height: 600px; */
 }
 .post_img img{
     max-width: 100%;

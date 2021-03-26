@@ -96,7 +96,7 @@ export default function Login() {
 
       
     } catch (error) {
-      
+      M.toast({html:error , classes:"#e57373 red lighten-2"})
     }
 
   }

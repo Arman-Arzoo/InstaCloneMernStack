@@ -8,6 +8,30 @@ export default function CreatePost() {
     const [body ,setBody] = useState()
     const [image ,setImage] = useState()
     const history = useHistory();
+
+    
+    const PostRes = async(e)=>{
+        e.preventDefault()
+        try {
+            const data = new FormData();
+            data.append("file",image);
+            data.append('upload_preset','insta-clone');
+            data.append('cloud_name','armanali');
+
+            const res = await fetch("https://api.cloudinary.com/v1_1/armanali/image/upload",{
+                method:"post",
+                body:data
+            });
+
+            const pic = await res.json();
+            setImage(pic.url)
+            // console.log(pic.url);
+
+        } catch (error) {
+            console.log(error)
+
+        }
+    }
     
     useEffect(() => {
        
@@ -17,7 +41,7 @@ export default function CreatePost() {
             const PostResponse = await fetch("/createpost",{
                 method:"post",
                 headers:{
-                    "content-type":"application/json",
+                    "Content-Type":"application/json",
                     "auth":"Bearer "+localStorage.getItem("jwt")
             },
                 body:JSON.stringify({
@@ -44,30 +68,6 @@ export default function CreatePost() {
     /* eslint-disable */
     }, [image])
 
-    const PostRes = async(e)=>{
-        e.preventDefault()
-        try {
-            const data = new FormData();
-            data.append("file",image);
-            data.append('upload_preset','insta-clone');
-            data.append('cloud_name','armanali');
-
-            const res = await fetch("https://api.cloudinary.com/v1_1/armanali/image/upload",{
-                method:"post",
-                body:data
-            });
-
-            const pic = await res.json();
-            setImage(pic.url)
-            // console.log(pic.url);
-
-        } catch (error) {
-            console.log(error)
-
-        }
-        
-
-    }
    
 
     return (

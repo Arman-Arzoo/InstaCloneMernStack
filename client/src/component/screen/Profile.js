@@ -4,7 +4,7 @@ import {UserContext} from '../../App';
 export default function Profile() {
 
     const [myPost, setMyPost] = useState([]);
-    const {state,dispatch}=useContext(UserContext);
+    const {state}=useContext(UserContext);
 
     useEffect(() => {
       async function getMyPost(){

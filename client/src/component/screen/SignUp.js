@@ -70,7 +70,7 @@ export default function SignUp() {
      
     const res = await fetch("/signup",{
       method:"post",
-      headers:{"content-type":"application/json"},
+      headers:{"Content-Type":"application/json"},
       body:JSON.stringify({
         name,
         password,

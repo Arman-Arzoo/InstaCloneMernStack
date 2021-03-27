@@ -70,7 +70,7 @@ export default function Login() {
 
       const loginRes = await fetch("/signin",{
         method:"post",
-        headers:{"content-type":"application/json"},
+        headers:{"Content-Type":"application/json"},
         body:JSON.stringify({
           email,
           password

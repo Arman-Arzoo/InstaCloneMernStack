@@ -50,32 +50,21 @@ exports.myPost = async (req , res ) => {
 
 }
 
-exports.myLike =  (req , res ) => {
-    Post.findByIdAndUpdate(req.user.postid,{
+exports.myLike =  async(req , res ) => {
+ try {
+    const myLike= await Post.findByIdAndUpdate(req.user.postId,{
         $push:{like:req.user._id}
     },{
         new:true
-    }).exec(err,result)
+    });
 
-    if(err){
-        return res.status(422).json({msg:err})
-    }
-    else{
-        res.json();
-    }
+     const result = myLike.exec()
+     res.json(result)
+     
+ } catch (error) {
+     return res.status(422).json({msg:"Error Occured",error})
+     
+ }
+  
 }
 
-exports.myLike =  (req , res ) => {
-    Post.findByIdAndUpdate(req.user.postid,{
-        $pull:{like:req.user._id}
-    },{
-        new:true
-    }).exec(err,result)
-
-    if(err){
-        return res.status(422).json({msg:err})
-    }
-    else{
-        res.json();
-    }
-}

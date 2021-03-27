@@ -7,6 +7,6 @@ const postController = require('../controller/postController')
 router.post('/createpost',checkuserLogin,postController.createPost)
 router.get('/getposts',checkuserLogin,postController.getPosts)
 router.get('/mypost',checkuserLogin,postController.myPost)
-router.get('/like',checkuserLogin,postController.myLike)
+router.put('/like',checkuserLogin,postController.myLike)
 
 module.exports = router

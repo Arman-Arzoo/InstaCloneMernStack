@@ -137,7 +137,20 @@ export default function Home() {
                return(
 
                 <div className="card home-card" key={posts._id}>
-                <h5 className="home-content post_img">{posts.postedBy.name}</h5>
+                 
+                <h5 className="home-content post_img">{posts.postedBy.name}
+                
+                {posts.postedBy._id === state._id
+                 && <i style={{float:"right", padding:"5px"}} className="material-icons"
+                    onClick={()=>{
+                        deletePost(posts._id)
+                    }}
+                 >delete</i>
+                
+                }
+                
+                </h5>
+
                 <div className="home-content">
                     <img src ={posts.photo} alt="post"></img>
                 </div>

@@ -9,6 +9,7 @@ router.get('/protected',checkuserLogin,userController.protected);
 router.post('/signup',userController.signUp)
 router.post('/signin',userController.signIn)
 
+router.get('/user/:id',checkuserLogin,userController.getProfile)
 
 
 

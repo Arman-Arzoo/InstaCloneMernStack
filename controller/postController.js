@@ -128,7 +128,6 @@ exports.comment = async (req ,res ) =>{
  
 exports.deleteComment = async (req , res )=>{
     
-    router.delete('/deletepost/:postId',requireLogin,(req,res)=>{
         Post.findOne({_id:req.params.postId})
         .populate("postedBy","_id")
         .exec((err,post)=>{
@@ -144,5 +143,5 @@ exports.deleteComment = async (req , res )=>{
                   })
             }
         })
-    })
+    
 }

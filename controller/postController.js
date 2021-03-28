@@ -88,8 +88,6 @@ exports.myLike =  async(req , res ) => {
   
 }
 
-
-
 exports.myUnLike =  async(req , res ) => {
 
      Post.findByIdAndUpdate(req.body.postId,{
@@ -105,4 +103,46 @@ exports.myUnLike =  async(req , res ) => {
      })
    
  }
+
+exports.comment = async (req ,res ) =>{
+
+    const comment = {
+        text:req.body.text,
+        postedBy:req.user._id
+    }
+    Post.findByIdAndUpdate(req.body.postId,{
+        $push:{comments:comment}
+    },{
+        new:true
+    })
+    .populate("comments.postedBy","_id name")
+    .populate("postedBy","_id name")
+    .exec((err,result)=>{
+        if(err){
+            return res.status(422).json({error:err})
+        }else{
+            res.json(result)
+        }
+    })
+}
  
+exports.deleteComment = async (req , res )=>{
+    
+    router.delete('/deletepost/:postId',requireLogin,(req,res)=>{
+        Post.findOne({_id:req.params.postId})
+        .populate("postedBy","_id")
+        .exec((err,post)=>{
+            if(err || !post){
+                return res.status(422).json({error:err})
+            }
+            if(post.postedBy._id.toString() === req.user._id.toString()){
+                  post.remove()
+                  .then(result=>{
+                      res.json(result)
+                  }).catch(err=>{
+                      console.log(err)
+                  })
+            }
+        })
+    })
+}

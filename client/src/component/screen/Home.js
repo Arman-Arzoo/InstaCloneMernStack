@@ -30,7 +30,7 @@ export default function Home() {
                 postId:id
             })
         });
-
+        console.log(res)
         const postLike = await res.json();
         console.log(postLike)
            

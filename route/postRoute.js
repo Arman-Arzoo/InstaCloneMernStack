@@ -8,5 +8,5 @@ router.post('/createpost',checkuserLogin,postController.createPost)
 router.get('/getposts',checkuserLogin,postController.getPosts)
 router.get('/mypost',checkuserLogin,postController.myPost)
 router.put('/like',checkuserLogin,postController.myLike)
-
+router.put('/unlike',checkuserLogin,postController.myUnLike)
 module.exports = router

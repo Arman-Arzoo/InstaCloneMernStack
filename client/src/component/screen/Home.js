@@ -9,15 +9,18 @@ export default function Home() {
                 headers:{"auth":"Bearer "+localStorage.getItem("jwt")},
              });
              const allPosts = await res.json();
-            //  console.log(allPosts)
+             console.log("form home" ,allPosts)
              setPost(allPosts.posts)
-        //   console.log("this is post ",post)
+            //  console.log("form second ",allPosts.posts._id)
+
+       
         }
         getPost()
       
     }, [])
 
-
+   
+  
     const likePost = async (id) =>{
        try {
         const res = await fetch('/like',{
@@ -30,7 +33,7 @@ export default function Home() {
                 postId:id
             })
         });
-        console.log(res)
+        
         const postLike = await res.json();
         console.log(postLike)
            
@@ -39,6 +42,29 @@ export default function Home() {
        }
 
     }
+
+
+    const unLikePost = async (id) =>{
+        try {
+         const res = await fetch('/unlike',{
+             method:'put',
+             headers:{
+                 "Content-Type":"application/json",
+                 "auth":"Bearer "+localStorage.getItem("jwt")
+             },
+             body:JSON.stringify({
+                 postId:id
+             })
+         });
+         
+         const postUnLike = await res.json();
+         console.log(postUnLike)
+            
+        } catch (error) {
+            console.log(error)
+        }
+ 
+     }
     return (
         <div >
            {post.map(posts =>{
@@ -56,13 +82,19 @@ export default function Home() {
                        likePost(posts._id)
                    }}
                 >thumb_up</i>
-                <i className="material-icons">thumb_down</i>
+                <i className="material-icons"
+                  onClick={()=>{
+                    unLikePost(posts._id)
+                }}
+                >thumb_down</i>    
                     <h6>{posts.like.length} likes</h6>
                     <h6>{posts.tittle}</h6>
                     <p>{posts.body}</p>
                     <input type="text" placeholder="add a comment"></input>
                 </div>
+                          
 
+                          
             </div>
                )
            })}

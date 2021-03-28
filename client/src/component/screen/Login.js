@@ -86,7 +86,7 @@ export default function Login() {
         localStorage.setItem("jwt",UserData.token);
         localStorage.setItem("user",JSON.stringify(UserData.user));
         dispatch({type:"USER",payload:UserData.user});
-        console.log("USER DATA",UserData.user)
+        // console.log("USER DATA",UserData.user)
         M.toast({html:"Log In Successfuly" , classes:"#66bb6a green lighten-1"})
         console.log()
         history.push("/")

@@ -19,7 +19,11 @@ exports.createPost = async (req,res)=>{
         })
         
         const newPost = await post.save();
+        console.log("from created post ",req.body)
         res.json({newPost});
+        
+        
+       
     } catch (error) {
         
         return res.status(400).json({msg:"could post"})
@@ -43,6 +47,7 @@ exports.myPost = async (req , res ) => {
     try {
         const mypost = await Post.find({postedBy:req.user._id}).populate("postedBy",'_id name');
         res.status(200).json({mypost})
+        console.log(req.user)
         
     } catch (error) {
         return res.status(400).json({msg:'Sorry could not get post'})
@@ -51,20 +56,53 @@ exports.myPost = async (req , res ) => {
 }
 
 exports.myLike =  async(req , res ) => {
- try {
-    const myLike= await Post.findByIdAndUpdate(req.user.postId,{
+
+   console.log(req.user)
+    Post.findByIdAndUpdate(req.body.postId,{
         $push:{like:req.user._id}
     },{
         new:true
-    });
+    }).exec((err,result)=>{
+        if(err){
+            return res.status(422).json({error:err})
+        }else{
+            res.json(result)
+        }
+    })
 
-     const result = myLike.exec()
-     res.json(result)
+
+//  try {
+//     const myLike= await Post.findByIdAndUpdate(req.user.postId,{
+//         $push:{like:req.user._id}
+//     },{
+//         new:true
+//     });
+
+//      const result = myLike.exec()
+//      res.json(result)
      
- } catch (error) {
-     return res.status(422).json({msg:"Error Occured",error})
+//  } catch (error) {
+//      return res.status(422).json({msg:"Error Occured",error})
      
- }
+//  }
   
 }
 
+
+
+exports.myUnLike =  async(req , res ) => {
+
+     Post.findByIdAndUpdate(req.body.postId,{
+         $pull:{like:req.user._id}
+     },{
+         new:true
+     }).exec((err,result)=>{
+         if(err){
+             return res.status(422).json({error:err})
+         }else{
+             res.json(result)
+         }
+     })
+   
+ }
+ 

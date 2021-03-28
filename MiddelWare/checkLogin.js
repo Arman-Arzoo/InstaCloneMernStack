@@ -19,6 +19,7 @@ module.exports = async(req,res,next)=>{
       const user = await User.findById(verified.id);
 
       req.user = user
+      console.log("after login",req.user)
       next()
         
     } catch (error) {

@@ -34,6 +34,7 @@ require('./model/userPost');
 // router useability
 app.use(require('./route/authRoute'));
 app.use(require('./route/postRoute'));
+app.use(require('./route/userRoute'));
 //app.use(require('./route/userRoute'));
 
 

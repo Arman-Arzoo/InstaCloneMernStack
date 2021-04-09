@@ -9,33 +9,10 @@ export default function CreatePost() {
     const [image ,setImage] = useState()
     const history = useHistory();
 
-    
-    const PostRes = async(e)=>{
-        e.preventDefault()
-        try {
-            const data = new FormData();
-            data.append("file",image);
-            data.append('upload_preset','insta-clone');
-            data.append('cloud_name','armanali');
-
-            const res = await fetch("https://api.cloudinary.com/v1_1/armanali/image/upload",{
-                method:"post",
-                body:data
-            });
-
-            const pic = await res.json();
-            setImage(pic.url)
-            // console.log(pic.url);
-
-        } catch (error) {
-            console.log(error)
-
-        }
-    }
-    
     useEffect(() => {
        
-     async function postData(){
+     async function postRes(){
+        
        if(image){
         try {
             const PostResponse = await fetch("/createpost",{
@@ -64,11 +41,35 @@ export default function CreatePost() {
         }
        }
      }
-     postData()
+     postRes()
     /* eslint-disable */
     }, [image])
 
-   
+
+    const postDetails = async (e)=>{
+
+        e.preventDefault()
+    try {
+        const data = new FormData();
+        data.append("file",image);
+        data.append('upload_preset','insta-clone');
+        data.append('cloud_name','armanali');
+
+        const res = await fetch("https://api.cloudinary.com/v1_1/armanali/image/upload",{
+            method:"post",
+            body:data
+        });
+
+        const pic = await res.json();
+        setImage(pic.url)
+        // console.log(pic.url);
+
+    } catch (error) {
+        console.log(error)
+
+    }
+
+    }
 
     return (
         <div className="card input-filed"
@@ -79,7 +80,7 @@ export default function CreatePost() {
             textAlign:"center"
         }}
         >  <h4>Create Post</h4>
-            <form onSubmit={PostRes} >
+            <form onSubmit={postDetails} >
             <input 
             type="text"
              placeholder="title"

@@ -12,11 +12,9 @@ export default function Home() {
                 headers:{"auth":"Bearer "+localStorage.getItem("jwt")},
              });
              const allPosts = await res.json();
-             console.log("form home" ,allPosts)
+            //  console.log("form home" ,allPosts)
              setPost(allPosts.posts)
             //  console.log("form second ",allPosts.posts._id)
-
-       
         }
         getPost()
       

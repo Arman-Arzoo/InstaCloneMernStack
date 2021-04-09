@@ -47,7 +47,7 @@ exports.myPost = async (req , res ) => {
     try {
         const mypost = await Post.find({postedBy:req.user._id}).populate("postedBy",'_id name');
         res.status(200).json({mypost})
-        console.log(req.user)
+        // console.log(req.user)
         
     } catch (error) {
         return res.status(400).json({msg:'Sorry could not get post'})
@@ -57,7 +57,7 @@ exports.myPost = async (req , res ) => {
 
 exports.myLike =  async(req , res ) => {
 
-   console.log(req.user)
+//    console.log(req.user)
     Post.findByIdAndUpdate(req.body.postId,{
         $push:{like:req.user._id}
     },{
